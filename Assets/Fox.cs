@@ -33,29 +33,20 @@ public class Fox : MonoBehaviour
 
     void Patrol()
     {
-        // Move forward for 3 seconds
-        if (time < 3)
+        // Move in a random direction
+        if (time <= 0)
         {
-            transform.position += transform.forward * Time.deltaTime * speed;
-            time += Time.deltaTime;
+            rotate = new Vector3(0, Random.Range(-5f, 5f), 0);
+            time = Random.Range(1f, 3f);
         }
-        // Wait for 1 second
-        else if (time < 4)
-        {
-            time += Time.deltaTime;
-        }
-        // Rotate for 3 seconds
-        else if (time < 7)
-        {
-            rotate = new Vector3(0, 5f, 0);
-            transform.eulerAngles += rotate * Time.deltaTime * speed;
-            time += Time.deltaTime;
-        }
-        // Reset time
         else
         {
-            time = 0;
+            time -= Time.deltaTime;
         }
+
+        // Move and rotate
+        transform.position += transform.forward * Time.deltaTime * speed;
+        transform.eulerAngles += rotate * Time.deltaTime * speed;
     }
 
     // Update is called once per frame
@@ -77,18 +68,23 @@ public class Fox : MonoBehaviour
         if (transform.position.x > 50)
         {
             transform.position = new Vector3(50, transform.position.y, transform.position.z);
+            // Turn around
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
         }
         else if (transform.position.x < -50)
         {
             transform.position = new Vector3(-50, transform.position.y, transform.position.z);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
         }
         if (transform.position.z > 50)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, 50);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
         }
         else if (transform.position.z < -50)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -50);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
         }
 
         energy -= Time.deltaTime * 1/endurance;
@@ -173,11 +169,15 @@ public class Fox : MonoBehaviour
                 energy -= 40f;
                 state = "find_prey";
                 // Spawn new fox with speed vision endurance and reproduction mean of parents
-                GameObject newFox = Instantiate(gameObject, transform.position, transform.rotation);
-                newFox.GetComponent<Fox>().speed = (speed + target.GetComponent<Fox>().speed) / 2;
-                newFox.GetComponent<Fox>().vision = (vision + target.GetComponent<Fox>().vision) / 2;
-                newFox.GetComponent<Fox>().endurance = (endurance + target.GetComponent<Fox>().endurance) / 2;
-                newFox.GetComponent<Fox>().reproduction = (reproduction + target.GetComponent<Fox>().reproduction) / 2;
+                // For i in int range of reproduction
+                for (int i = 0; i < reproduction; i++)
+                {
+                    GameObject newFox = Instantiate(gameObject, transform.position, transform.rotation);
+                    newFox.GetComponent<Fox>().speed = (speed + target.GetComponent<Fox>().speed) / 2;
+                    newFox.GetComponent<Fox>().vision = (vision + target.GetComponent<Fox>().vision) / 2;
+                    newFox.GetComponent<Fox>().endurance = (endurance + target.GetComponent<Fox>().endurance) / 2;
+                    newFox.GetComponent<Fox>().reproduction = (reproduction + target.GetComponent<Fox>().reproduction) / 2;
+                }
             }
         }
 
