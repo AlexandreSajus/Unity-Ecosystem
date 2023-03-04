@@ -107,10 +107,10 @@ public class Simulation : MonoBehaviour
             this.rabbit_speed.Add(rabbit_current_speed);
 
             // Save the foxes, rabbits, average speed of foxes and average speed of rabbits to a file
-            System.IO.File.WriteAllLines("foxes.txt", foxes.ConvertAll(i => i.ToString()).ToArray());
-            System.IO.File.WriteAllLines("rabbits.txt", rabbits.ConvertAll(i => i.ToString()).ToArray());
-            System.IO.File.WriteAllLines("fox_speed.txt", fox_speed.ConvertAll(i => i.ToString()).ToArray());
-            System.IO.File.WriteAllLines("rabbit_speed.txt", rabbit_speed.ConvertAll(i => i.ToString()).ToArray());
+            System.IO.File.WriteAllLines("data/foxes.txt", foxes.ConvertAll(i => i.ToString()).ToArray());
+            System.IO.File.WriteAllLines("data/rabbits.txt", rabbits.ConvertAll(i => i.ToString()).ToArray());
+            System.IO.File.WriteAllLines("data/fox_speed.txt", fox_speed.ConvertAll(i => i.ToString()).ToArray());
+            System.IO.File.WriteAllLines("data/rabbit_speed.txt", rabbit_speed.ConvertAll(i => i.ToString()).ToArray());
         }
     }
 }
