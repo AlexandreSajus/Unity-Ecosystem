@@ -62,3 +62,9 @@ crashlytics-build.properties
 Assets/PolygonWesternFrontier*
 Assets/VoxelAnimals*
 Assets/BloodDecalsAndEffects*
+
+# Logs
+fox_speed.txt
+foxes.txt
+rabbit_speed.txt
+rabbits.txt
