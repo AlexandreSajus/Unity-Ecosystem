@@ -10,27 +10,27 @@ A Simple Ecosystem with Lions, Chickens and Grass in Unity.
 
 This project simulates a simple prey-predator system: 
 
-Agents lose energy by moving. If their energy is too low, they look for food:
+- Agents lose energy by moving. If their energy is too low, they look for food:
 
-Lions eat Chickens
+- Lions eat Chickens
 
 <p align="center">
   <img src="media/lion.gif" alt="Graph" width="50%"/>
 </p>
 
-Chickens eat Grass
+- Chickens eat Grass
 
 <p align="center">
   <img src="media/chicken.gif" alt="Graph" width="50%"/>
 </p>
 
-If they have enough energy, they reproduce. The children inherit the average speed of their parents
+- If they have enough energy, they reproduce. The children inherit the average speed of their parents
 
 <p align="center">
   <img src="media/reproduce.gif" alt="Graph" width="50%"/>
 </p>
 
-Speed of an agent makes them move faster but also consume energy faster so natural selection finds a compromise.
+- Speed of an agent makes them move faster but also consume energy faster so natural selection finds a compromise.
 
 <p align="center">
   <img src="media/graph.png" alt="Graph" width="70%"/>
