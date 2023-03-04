@@ -6,6 +6,7 @@ public class Fox : MonoBehaviour
 {
 
     public float speed = 1f;
+    public GameObject chunk;
     public float energy_depletion = 1f;
     public float vision = 1f;
     public float reproduction = 1f;
@@ -204,6 +205,9 @@ public class Fox : MonoBehaviour
             if (Vector3.Distance(transform.position, target.transform.position) <= 1)
             {
                 Destroy(target);
+                // Create and play the chunkFX particle system
+                GameObject chunkFX = Instantiate(chunk, transform.position, transform.rotation);
+                chunkFX.GetComponent<ParticleSystem>().Play();
                 energy += 20f;
             }
         }
