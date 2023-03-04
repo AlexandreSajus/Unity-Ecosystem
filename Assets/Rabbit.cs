@@ -54,8 +54,6 @@ public class Rabbit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
         rays.Clear();
         for (int i = 0; i < rayCount; i++)
         {
@@ -64,7 +62,7 @@ public class Rabbit : MonoBehaviour
             Vector3 direction = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
             Ray ray = new Ray(transform.position, direction);
             rays.Add(ray);
-            Debug.DrawRay(ray.origin, ray.direction * vision, Color.red);
+            //Debug.DrawRay(ray.origin, ray.direction * vision, Color.red);
 
         }
 
@@ -95,8 +93,7 @@ public class Rabbit : MonoBehaviour
 
         if (energy <= 0)
         {
-            // Stop moving
-            speed = 0;
+            Destroy(gameObject);
         }
 
         else if (chased)
@@ -172,23 +169,31 @@ public class Rabbit : MonoBehaviour
 
         else if (state == "mate")
         {
-            // Move towards target
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
-            // Rotate towards target
-            transform.LookAt(target.transform.position);
-
-            // If target is within 1 unit
-            // Destroy target
-            if (Vector3.Distance(transform.position, target.transform.position) <= 1 && target.tag == "Rabbit")
+            if (target == null)
             {
-                energy -= 40f;
-                state = "find_prey";
-                // Spawn new fox with speed vision endurance and reproduction mean of parents
-                // For i in int range of reproduction
-                for (int i = 0; i < reproduction; i++)
+                state = "find_mate";
+            }
+            else
+            {
+                // Move towards target
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
+                // Rotate towards target
+                transform.LookAt(target.transform.position);
+
+                // If target is within 1 unit
+                // Destroy target
+                if (Vector3.Distance(transform.position, target.transform.position) <= 1 && target.tag == "Rabbit")
                 {
-                    GameObject newFox = Instantiate(gameObject, transform.position, transform.rotation);
-                    newFox.GetComponent<Rabbit>().speed = (speed + target.GetComponent<Rabbit>().speed) / 2;
+                    energy -= 40f;
+                    state = "find_prey";
+                    // Spawn new fox with speed vision endurance and reproduction mean of parents
+                    // For i in int range of reproduction
+                    for (int i = 0; i < reproduction; i++)
+                    {
+                        GameObject newFox = Instantiate(gameObject, transform.position, transform.rotation);
+                        newFox.GetComponent<Rabbit>().speed = (speed + target.GetComponent<Rabbit>().speed) / 2;
+                        newFox.GetComponent<Rabbit>().energy = 30f;
+                    }
                 }
             }
         }
@@ -205,7 +210,7 @@ public class Rabbit : MonoBehaviour
 
                 // If target is within 1 unit
                 // Destroy target
-                if (Vector3.Distance(transform.position, target.transform.position) <= 1)
+                if (Vector3.Distance(transform.position, target.transform.position) <= 2f)
                 {
                     Destroy(target);
                     energy += 20f;

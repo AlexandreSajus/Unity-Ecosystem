@@ -186,8 +186,8 @@ MonoBehaviour:
     y: 0
     width: 289.6
     height: 427.2
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -224,8 +224,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: dcceffff
-      m_LastClickedID: -12580
+      m_SelectedIDs: 0e5a0000
+      m_LastClickedID: 23054
       m_ExpandedIDs: 38fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -535,9 +535,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -26.002106, y: -31.552387, z: -0.12726891}
+    m_Target: {x: -52.038666, y: -18.57398, z: 10.41124}
     speed: 2
-    m_Value: {x: -26.002106, y: -31.552387, z: -0.12726891}
+    m_Value: {x: -52.038666, y: -18.57398, z: 10.41124}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -584,13 +584,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.17055231, y: 0.7167248, z: -0.18821743, w: -0.64945555}
+    m_Target: {x: -0.20655628, y: 0.26531056, z: -0.058300953, w: -0.93997204}
     speed: 2
-    m_Value: {x: -0.17055225, y: 0.7167246, z: -0.18821736, w: -0.6494553}
+    m_Value: {x: -0.2065561, y: 0.26531035, z: -0.058300905, w: -0.93997127}
   m_Size:
-    m_Target: 66.33535
+    m_Target: 34.234993
     speed: 2
-    m_Value: 66.33535
+    m_Value: 34.234993
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -829,8 +829,8 @@ MonoBehaviour:
     y: 0
     width: 363.19995
     height: 722.8
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -871,7 +871,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 52
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

@@ -311,7 +311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429945494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -70, y: 0.5, z: 20}
+  m_LocalPosition: {x: -70, y: 1, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -430,11 +430,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  energy_depletion: 0.2
+  energy_depletion: 0.25
   chased: 0
   predator: {fileID: 0}
-  vision: 1
-  reproduction: 5
+  vision: 25
+  reproduction: 3
   fov: 90
   rayCount: 20
   energy: 100
@@ -555,11 +555,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  energy_depletion: 0.2
+  energy_depletion: 0.25
   vision: 40
   reproduction: 2
   fov: 90
-  rayCount: 10
+  rayCount: 30
   energy: 100
   state: idle
   move: {x: 0, y: 0, z: 0}
@@ -737,7 +737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.25084853, y: -0, z: -0, w: 0.9680264}
-  m_LocalPosition: {x: 0, y: 30.7, z: -74.9}
+  m_LocalPosition: {x: 0, y: 34.2, z: -81.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -773,7 +773,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d76ae63b2885e40832b62b679bee60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rabbit_spawn_rate: 1
+  start_rabbit: 30
+  start_fox: 7
+  grass_spawn_rate: 0.01
+  rabbit_min_speed: 2
+  rabbit_max_speed: 7
+  fox_min_speed: 2
+  fox_max_speed: 8
   Rabbit: {fileID: 0}
   Fox: {fileID: 0}
   Grass: {fileID: 0}

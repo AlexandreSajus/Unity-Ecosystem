@@ -21,6 +21,8 @@ public class Fox : MonoBehaviour
 
     public GameObject target;
     public float time = 0f;
+    private float min_dist;
+    private GameObject closest;
 
     // Create list of Rays
     List<Ray> rays = new List<Ray>();
@@ -52,8 +54,6 @@ public class Fox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
         rays.Clear();
         for (int i = 0; i < rayCount; i++)
         {
@@ -62,7 +62,7 @@ public class Fox : MonoBehaviour
             Vector3 direction = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
             Ray ray = new Ray(transform.position, direction);
             rays.Add(ray);
-            Debug.DrawRay(ray.origin, ray.direction * vision, Color.red);
+            //Debug.DrawRay(ray.origin, ray.direction * vision, Color.red);
 
         }
 
@@ -142,6 +142,7 @@ public class Fox : MonoBehaviour
             Patrol();
 
             // Check if rays hit an object tagged Fox
+            min_dist = 100000f;
             foreach (Ray ray in rays)
             {
                 RaycastHit hit;
@@ -149,11 +150,18 @@ public class Fox : MonoBehaviour
                 {
                     if (hit.collider.tag == "Rabbit")
                     {
-                        target = hit.collider.gameObject;
-                        state = "prey";
-                        break;
+                        if (Vector3.Distance(transform.position, hit.collider.transform.position) < min_dist)
+                        {
+                            min_dist = Vector3.Distance(transform.position, hit.collider.transform.position);
+                            closest = hit.collider.gameObject;
+                            state = "prey";
+                        }
                     }
                 }
+            }
+            if (state == "prey")
+            {
+                target = closest;
             }
         }
 

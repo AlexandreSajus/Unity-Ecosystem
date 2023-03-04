@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Simulation : MonoBehaviour
 {
-    public float rabbit_spawn_rate = 1f;
+    public float start_rabbit;
+    public float start_fox;
+    public float grass_spawn_rate;
+    public float rabbit_min_speed;
+    public float rabbit_max_speed;
+    public float fox_min_speed;
+    public float fox_max_speed;
     public GameObject Rabbit;
     public GameObject Fox;
     public GameObject Grass;
@@ -23,9 +29,11 @@ public class Simulation : MonoBehaviour
         {
             Instantiate(Fox, new Vector3(Random.Range(-50f, 50f), 1, Random.Range(-50f, 50f)), Quaternion.Euler(0, Random.Range(0f, 360f), 0));
             // Get random speed endurance and reproduction
-            float speed = Random.Range(5f, 15f);
+            float speed = Random.Range(fox_min_speed, fox_max_speed);
             // Set the speed endurance and reproduction
             Fox.GetComponent<Fox>().speed = speed;
+            // Set random energy
+            Fox.GetComponent<Fox>().energy = Random.Range(0f, 100f);
         }
 
         // Spawn 20 Rabbits at random positions and random rotations
@@ -33,9 +41,17 @@ public class Simulation : MonoBehaviour
         {
             Instantiate(Rabbit, new Vector3(Random.Range(-50f, 50f), 1, Random.Range(-50f, 50f)), Quaternion.Euler(0, Random.Range(0f, 360f), 0));
             // Get random speed endurance and reproduction
-            float speed = Random.Range(5f, 15f);
+            float speed = Random.Range(rabbit_min_speed, rabbit_max_speed);
             // Set the speed endurance and reproduction
             Rabbit.GetComponent<Rabbit>().speed = speed;
+            // Set random energy
+            Rabbit.GetComponent<Rabbit>().energy = Random.Range(0f, 100f);
+        }
+
+        // Spawn 20 Grass at random positions
+        for (int i = 0; i < 20; i++)
+        {
+            Instantiate(Grass, new Vector3(Random.Range(-50f, 50f), 1, Random.Range(-50f, 50f)), Quaternion.Euler(0, Random.Range(0f, 360f), 0));
         }
     }
 
@@ -43,9 +59,9 @@ public class Simulation : MonoBehaviour
     void Update()
     {
         // Spawn Grass randomly
-        if (Random.Range(0f, 1f) < 0.01f)
+        if (Random.Range(0f, 1f) < grass_spawn_rate)
         {
-            Instantiate(Grass, new Vector3(Random.Range(-50f, 50f), 0.5f, Random.Range(-50f, 50f)), Quaternion.Euler(0, Random.Range(0f, 360f), 0));
+            Instantiate(Grass, new Vector3(Random.Range(-50f, 50f), 1f, Random.Range(-50f, 50f)), Quaternion.Euler(0, Random.Range(0f, 360f), 0));
         }
     }
 }
