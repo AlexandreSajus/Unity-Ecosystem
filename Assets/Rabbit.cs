@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fox : MonoBehaviour
+public class Rabbit : MonoBehaviour
 {
 
     public float speed = 1f;
     public float energy_depletion = 1f;
+    public bool chased = false;
+    public GameObject predator;
     public float vision = 1f;
     public float reproduction = 1f;
 
@@ -93,8 +95,19 @@ public class Fox : MonoBehaviour
 
         if (energy <= 0)
         {
-            Destroy(gameObject);
+            // Stop moving
+            speed = 0;
         }
+
+        else if (chased)
+        {
+            chased = false;
+            // Move away from predator
+            // if predator not destroyed
+            if (predator != null)
+                transform.position = Vector3.MoveTowards(transform.position, predator.transform.position, Time.deltaTime * speed * -1);
+        }
+
 
         else if (energy >= 50)
         {
@@ -127,7 +140,7 @@ public class Fox : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, vision))
                 {
-                    if (hit.collider.tag == "Fox")
+                    if (hit.collider.tag == "Rabbit")
                     {
                         target = hit.collider.gameObject;
                         state = "mate";
@@ -147,7 +160,7 @@ public class Fox : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, vision))
                 {
-                    if (hit.collider.tag == "Rabbit")
+                    if (hit.collider.tag == "Grass")
                     {
                         target = hit.collider.gameObject;
                         state = "prey";
@@ -166,7 +179,7 @@ public class Fox : MonoBehaviour
 
             // If target is within 1 unit
             // Destroy target
-            if (Vector3.Distance(transform.position, target.transform.position) <= 1 && target.tag == "Fox")
+            if (Vector3.Distance(transform.position, target.transform.position) <= 1 && target.tag == "Rabbit")
             {
                 energy -= 40f;
                 state = "find_prey";
@@ -175,28 +188,32 @@ public class Fox : MonoBehaviour
                 for (int i = 0; i < reproduction; i++)
                 {
                     GameObject newFox = Instantiate(gameObject, transform.position, transform.rotation);
-                    newFox.GetComponent<Fox>().speed = (speed + target.GetComponent<Fox>().speed) / 2;
+                    newFox.GetComponent<Rabbit>().speed = (speed + target.GetComponent<Rabbit>().speed) / 2;
                 }
             }
         }
 
         else if (state == "prey")
         {
-            // Set chased of target to true
-            target.GetComponent<Rabbit>().chased = true;
-            // Set predator of target to me
-            target.GetComponent<Rabbit>().predator = gameObject;
-            // Move towards target
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
-            // Rotate towards target
-            transform.LookAt(target.transform.position);
-
-            // If target is within 1 unit
-            // Destroy target
-            if (Vector3.Distance(transform.position, target.transform.position) <= 1)
+            // if target is not destroyed
+            if (target != null)
             {
-                Destroy(target);
-                energy += 20f;
+                // Move towards target
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
+                // Rotate towards target
+                transform.LookAt(target.transform.position);
+
+                // If target is within 1 unit
+                // Destroy target
+                if (Vector3.Distance(transform.position, target.transform.position) <= 1)
+                {
+                    Destroy(target);
+                    energy += 20f;
+                }
+            }
+            else
+            {
+                state = "find_prey";
             }
         }
     }
