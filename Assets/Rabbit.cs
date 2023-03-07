@@ -20,6 +20,7 @@ public class Rabbit : MonoBehaviour
 
     public Vector3 move = Vector3.zero;
     public Vector3 rotate = Vector3.zero;
+    public Vector3 direction = Vector3.zero;
 
     public GameObject target;
     public float time = 0f;
@@ -102,7 +103,12 @@ public class Rabbit : MonoBehaviour
             // Move away from predator
             // if predator not destroyed
             if (predator != null)
-                transform.position = Vector3.MoveTowards(transform.position, predator.transform.position, Time.deltaTime * speed * -1);
+            {
+                move = transform.position - predator.transform.position;
+                move = move.normalized;
+                transform.LookAt(transform.position + move);
+                transform.position += move * Time.deltaTime * speed;
+            }
         }
 
 
@@ -128,7 +134,7 @@ public class Rabbit : MonoBehaviour
             state = "prey";
         }
 
-        if (state == "find_mate")
+        else if (state == "find_mate")
         {
             Patrol();
             // Check if rays hit an object tagged Fox

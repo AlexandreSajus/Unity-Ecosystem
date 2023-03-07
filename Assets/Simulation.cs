@@ -34,7 +34,7 @@ public class Simulation : MonoBehaviour
         Grass = GameObject.Find("Grass");
 
         // Spawn 20 Foxes at random positions and random rotations
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < start_rabbit; i++)
         {
             Instantiate(Fox, new Vector3(Random.Range(-50f, 50f), 1, Random.Range(-50f, 50f)), Quaternion.Euler(0, Random.Range(0f, 360f), 0));
             // Get random speed endurance and reproduction
@@ -46,7 +46,7 @@ public class Simulation : MonoBehaviour
         }
 
         // Spawn 20 Rabbits at random positions and random rotations
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < start_fox; i++)
         {
             Instantiate(Rabbit, new Vector3(Random.Range(-50f, 50f), 1, Random.Range(-50f, 50f)), Quaternion.Euler(0, Random.Range(0f, 360f), 0));
             // Get random speed endurance and reproduction

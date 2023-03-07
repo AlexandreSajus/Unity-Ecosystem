@@ -63,8 +63,6 @@ public class Fox : MonoBehaviour
             Vector3 direction = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
             Ray ray = new Ray(transform.position, direction);
             rays.Add(ray);
-            //Debug.DrawRay(ray.origin, ray.direction * vision, Color.red);
-
         }
 
         // If x or z is above 10 or below -10, keep it within the bounds
