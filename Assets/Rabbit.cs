@@ -104,6 +104,7 @@ public class Rabbit : MonoBehaviour
             // if predator not destroyed
             if (predator != null)
             {
+                state = "chased";
                 move = transform.position - predator.transform.position;
                 move = move.normalized;
                 transform.LookAt(transform.position + move);
@@ -134,7 +135,7 @@ public class Rabbit : MonoBehaviour
             state = "prey";
         }
 
-        else if (state == "find_mate")
+        if (state == "find_mate")
         {
             Patrol();
             // Check if rays hit an object tagged Fox
