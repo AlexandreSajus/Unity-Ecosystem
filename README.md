@@ -8,6 +8,13 @@ A Simple Ecosystem with Lions, Chickens and Grass in Unity.
 
 ## About
 
+A devlog about this project is available here:
+<p align="center">
+  <a href="https://youtu.be/RyfW9GjyoxA" target="_blank">
+    <img src="media/thumb.png" alt="Youtube Devlog" width="50%"/>
+  </a>
+</p>
+
 This project simulates a simple prey-predator system: 
 
 - Agents lose energy by moving. If their energy is too low, they look for food:
