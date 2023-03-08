@@ -33,7 +33,7 @@ This project simulates a simple prey-predator system:
 - Speed of an agent makes them move faster but also consume energy faster so natural selection finds a compromise.
 
 <p align="center">
-  <img src="media/graph.png" alt="Graph" width="70%"/>
+  <img src="media/graph2.png" alt="Graph" width="70%"/>
 </p>
 
 In the above simulation, lions initially have the upper hand in terms of speed and therefore have more population. However, through natural selection, only the faster chickens survive and reproduce. This leads to new chickens being able to outrun lions and leave them with no food which leads to their extinction.
